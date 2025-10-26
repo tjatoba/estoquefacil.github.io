@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estoque Fácil - Gerenciamento Muito Mais Simples</title>
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+  </head>
+  <body>
+    <header>
+      <h1>Estoque Fácil - Gerenciamento Muito Mais Simples</h1>
+    </header>
+
+    <nav>
+      <a href="#tela-login">Login</a>
+      <a href="#tela-cadastro">Cadastro</a>
+      <a href="#inclusao-material">Inclusão de Material</a>
+      <a href="#gestao-terceiros">Gestão de Terceiros</a>
+      <a href="#saida-material">Saída de Material</a>
+      <a href="#fechamento-mensal">Fechamento Mensal</a>
+    </nav>
+
+    <main>
+      <section id="tela-login">
+        <h2>Tela de Login</h2>
+        <form>
+          <div>
+            <label for="login-email">E-mail:</label>
+            <input type="email" id="login-email" name="email" required />
+          </div>
+          <div>
+            <label for="login-senha">Senha:</label>
+            <input type="password" id="login-senha" name="senha" required />
+          </div>
+          <button type="submit">Entrar</button>
+          <p>
+            <a href="#tela-cadastro">Cadastrar-se</a> |
+            <button type="button">Recuperar a senha</button>
+          </p>
+        </form>
+      </section>
+      <section id="tela-cadastro">
+        <h2>Tela de Cadastro</h2>
+        <form>
+          <div>
+            <label for="cad-nome-resp">Nome do Responsável:</label>
+            <input type="text" id="cad-nome-resp" name="nome-responsavel" />
+          </div>
+          <div>
+            <label for="cad-nome-empresa">Nome da Empresa:</label>
+            <input type="text" id="cad-nome-empresa" name="nome-empresa" />
+          </div>
+          <div>
+            <label for="cad-cnpj">CNPJ:</label>
+            <input type="text" id="cad-cnpj" name="cnpj" />
+          </div>
+          <div>
+            <label for="cad-email">E-mail:</label>
+            <input type="email" id="cad-email" name="email" />
+          </div>
+          <div>
+            <label for="cad-email-conf">Confirmação de E-mail:</label>
+            <input type="email" id="cad-email-conf" name="email-confirmacao" />
+          </div>
+          <div>
+            <label for="cad-senha">Senha:</label>
+            <input type="password" id="cad-senha" name="senha" />
+          </div>
+          <div>
+            <label for="cad-senha-conf">Confirmação de Senha:</label>
+            <input
+              type="password"
+              id="cad-senha-conf"
+              name="senha-confirmacao"
+            />
+          </div>
+          <button type="submit">Finalizar cadastro</button>
+          <a href="#tela-login">Voltar</a>
+        </form>
+      </section>
+      <section id="inclusao-material">
+        <h2>Inclusão de material</h2>
+        <form>
+          <div>
+            <label for="inc-nf">Número da Nota Fiscal:</label>
+            <input type="text" id="inc-nf" name="nf" />
+          </div>
+          <div>
+            <label for="inc-valor-total">Valor Total da Nota Fiscal:</label>
+            <input
+              type="number"
+              id="inc-valor-total"
+              name="valor-total"
+              step="0.01"
+            />
+          </div>
+          <div>
+            <label for="inc-icms">Valor do ICMS:</label>
+            <input type="number" id="inc-icms" name="icms" step="0.01" />
+          </div>
+          <div>
+            <label for="inc-ipi">Valor do IPI:</label>
+            <input type="number" id="inc-ipi" name="ipi" step="0.01" />
+          </div>
+          <div>
+            <label for="inc-tipo-material">Tipo do Material:</label>
+            <select id="inc-tipo-material" name="tipo-material">
+              <option value="chapa-26">Chapa 26</option>
+              <option value="chapa-24">Chapa 24</option>
+            </select>
+          </div>
+          <div>
+            <label for="inc-espessura">Espessura:</label>
+            <input
+              type="number"
+              id="inc-espessura"
+              name="espessura"
+              step="0.01"
+            />
+          </div>
+          <div>
+            <label for="inc-peso-liquido">Peso Líquido do Material (kg):</label>
+            <input
+              type="number"
+              id="inc-peso-liquido"
+              name="peso-liquido"
+              step="0.01"
+            />
+          </div>
+          <div>
+            <label for="inc-lote">Lote do Terceiro:</label>
+            <input type="text" id="inc-lote" name="lote" />
+          </div>
+
+          <h3>Campos Calculados</h3>
+          <div class="output">
+            <strong>Valor líquido da nota:</strong>
+            <span id="output-valor-liquido">R$ 0,00</span>
+          </div>
+          <div class="output">
+            <strong>Preço médio líquido da nota:</strong>
+            <span id="output-preco-medio">R$ 0,00</span>
+          </div>
+
+          <button type="submit">Registrar Entrada em Trânsito</button>
+        </form>
+      </section>
+      <section id="gestao-terceiros">
+        <h2>Gestão de materiais em terceiros</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Nota Fiscal</th>
+              <th>Tipo Material</th>
+              <th>Peso (kg)</th>
+              <th>Valor Líquido</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>NF-001</td>
+              <td>Chapa 26</td>
+              <td>10000</td>
+              <td>R$ 25.000,00</td>
+              <td><button>Dar baixa no estoque</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="saida-material">
+        <h2>Saída de Material</h2>
+        <form>
+          <div>
+            <label for="saida-tipo-material">Tipo do material:</label>
+            <select id="saida-tipo-material" name="tipo-material">
+              <option value="chapa-26">Chapa 26</option>
+              <option value="chapa-24">Chapa 24</option>
+            </select>
+          </div>
+          <div>
+            <label for="saida-peso">Peso de saída (kg):</label>
+            <input
+              type="number"
+              id="saida-peso"
+              name="peso-saida"
+              step="0.01"
+            />
+          </div>
+          <button type="submit">Registrar Saída</button>
+          <div class="output" style="margin-top: 20px">
+            <strong>Custo da Saída:</strong>
+            <span id="output-custo-saida">R$ 0,00</span>
+          </div>
+        </form>
+      </section>
+      <section id="fechamento-mensal">
+        <h2>Fechamento Mensal</h2>
+        <button>Gerar Fechamento do Mês</button>
+        <h3>Relatório Consolidado</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo de Material</th>
+              <th>Estoque Inicial (kg)</th>
+              <th>Estoque Inicial (R$)</th>
+              <th>Total de Entradas (kg)</th>
+              <th>Total de Entradas (R$)</th>
+              <th>Total de Saídas (kg)</th>
+              <th>Total de Saídas (R$)</th>
+              <th>Estoque Final (kg)</th>
+              <th>Estoque Final (R$)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Chapa 26</td>
+              <td>0.00</td>
+              <td>R$ 0,00</td>
+              <td>10000.00</td>
+              <td>R$ 25.000,00</td>
+              <td>0.00</td>
+              <td>R$ 0,00</td>
+              <td>10000.00</td>
+              <td>R$ 25.000,00</td>
+            </tr>
+            <tr>
+              <td>Chapa 24</td>
+              <td>0.00</td>
+              <td>R$ 0,00</td>
+              <td>0.00</td>
+              <td>R$ 0,00</td>
+              <td>0.00</td>
+              <td>R$ 0,00</td>
+              <td>0.00</td>
+              <td>R$ 0,00</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
