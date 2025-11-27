@@ -53,11 +53,8 @@ Novo Preço Médio Ponderado = Novo Valor Total Líquido / Novo Peso Total
 
 ## Como Executar
 
-Para servir módulos ES6 corretamente:
-
-```sh
-python3 -m http.server 5500
-open http://localhost:5500
+```
+https://tjatoba.github.io/estoquefacil.github.io/
 ```
 
 ## Validações e UX
