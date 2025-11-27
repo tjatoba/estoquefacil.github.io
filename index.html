@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estoque Fácil - Gerenciamento Muito Mais Simples</title>
-    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header>
@@ -12,12 +12,14 @@
     </header>
 
     <nav>
-      <a href="#tela-login">Login</a>
-      <a href="#tela-cadastro">Cadastro</a>
-      <a href="#inclusao-material">Inclusão de Material</a>
-      <a href="#gestao-terceiros">Gestão de Terceiros</a>
-      <a href="#saida-material">Saída de Material</a>
-      <a href="#fechamento-mensal">Fechamento Mensal</a>
+      <a href="#inclusao-material" id="nav-inclusao">Inclusão de Material</a>
+      <a href="#gestao-terceiros" id="nav-terceiros">Gestão de Terceiros</a>
+      <a href="#saida-material" id="nav-saida">Saída de Material</a>
+      <a href="#fechamento-mensal" id="nav-fechamento">Fechamento Mensal</a>
+      <span id="nav-status" class="status-tag" style="display: none"
+        >Logado</span
+      >
+      <a href="#tela-login" id="link-sair" style="display: none">Sair</a>
     </nav>
 
     <main>
@@ -32,39 +34,53 @@
             <label for="login-senha">Senha:</label>
             <input type="password" id="login-senha" name="senha" required />
           </div>
-          <button type="submit">Entrar</button>
+          <button type="submit" id="btn-entrar">Entrar</button>
           <p>
-            <a href="#tela-cadastro">Cadastrar-se</a> |
-            <button type="button">Recuperar a senha</button>
+            <a href="#tela-cadastro">Cadastrar-se</a>
           </p>
         </form>
       </section>
       <section id="tela-cadastro">
         <h2>Tela de Cadastro</h2>
-        <form>
+        <form id="form-cadastro" novalidate>
           <div>
             <label for="cad-nome-resp">Nome do Responsável:</label>
-            <input type="text" id="cad-nome-resp" name="nome-responsavel" />
+            <input
+              type="text"
+              id="cad-nome-resp"
+              name="nome-responsavel"
+              required
+            />
           </div>
           <div>
             <label for="cad-nome-empresa">Nome da Empresa:</label>
-            <input type="text" id="cad-nome-empresa" name="nome-empresa" />
+            <input
+              type="text"
+              id="cad-nome-empresa"
+              name="nome-empresa"
+              required
+            />
           </div>
           <div>
             <label for="cad-cnpj">CNPJ:</label>
-            <input type="text" id="cad-cnpj" name="cnpj" />
+            <input type="text" id="cad-cnpj" name="cnpj" required />
           </div>
           <div>
             <label for="cad-email">E-mail:</label>
-            <input type="email" id="cad-email" name="email" />
+            <input type="email" id="cad-email" name="email" required />
           </div>
           <div>
             <label for="cad-email-conf">Confirmação de E-mail:</label>
-            <input type="email" id="cad-email-conf" name="email-confirmacao" />
+            <input
+              type="email"
+              id="cad-email-conf"
+              name="email-confirmacao"
+              required
+            />
           </div>
           <div>
             <label for="cad-senha">Senha:</label>
-            <input type="password" id="cad-senha" name="senha" />
+            <input type="password" id="cad-senha" name="senha" required />
           </div>
           <div>
             <label for="cad-senha-conf">Confirmação de Senha:</label>
@@ -72,15 +88,18 @@
               type="password"
               id="cad-senha-conf"
               name="senha-confirmacao"
+              required
             />
           </div>
-          <button type="submit">Finalizar cadastro</button>
+          <button type="submit" id="btn-finalizar-cadastro" disabled>
+            Finalizar cadastro
+          </button>
           <a href="#tela-login">Voltar</a>
         </form>
       </section>
       <section id="inclusao-material">
         <h2>Inclusão de material</h2>
-        <form>
+        <form id="form-inclusao">
           <div>
             <label for="inc-nf">Número da Nota Fiscal:</label>
             <input type="text" id="inc-nf" name="nf" />
@@ -142,12 +161,15 @@
             <span id="output-preco-medio">R$ 0,00</span>
           </div>
 
-          <button type="submit">Registrar Entrada em Trânsito</button>
+          <button type="submit" id="btn-registrar-transito">
+            Registrar Entrada em Trânsito
+          </button>
         </form>
       </section>
       <section id="gestao-terceiros">
         <h2>Gestão de materiais em terceiros</h2>
-        <table>
+        <div id="resumo-estoque"></div>
+        <table id="tabela-transito">
           <thead>
             <tr>
               <th>Nota Fiscal</th>
@@ -157,20 +179,12 @@
               <th>Ação</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>NF-001</td>
-              <td>Chapa 26</td>
-              <td>10000</td>
-              <td>R$ 25.000,00</td>
-              <td><button>Dar baixa no estoque</button></td>
-            </tr>
-          </tbody>
+          <tbody id="transito-tbody"></tbody>
         </table>
       </section>
       <section id="saida-material">
         <h2>Saída de Material</h2>
-        <form>
+        <form id="form-saida">
           <div>
             <label for="saida-tipo-material">Tipo do material:</label>
             <select id="saida-tipo-material" name="tipo-material">
@@ -187,7 +201,9 @@
               step="0.01"
             />
           </div>
-          <button type="submit">Registrar Saída</button>
+          <button type="submit" id="btn-registrar-saida">
+            Registrar Saída
+          </button>
           <div class="output" style="margin-top: 20px">
             <strong>Custo da Saída:</strong>
             <span id="output-custo-saida">R$ 0,00</span>
@@ -196,9 +212,17 @@
       </section>
       <section id="fechamento-mensal">
         <h2>Fechamento Mensal</h2>
-        <button>Gerar Fechamento do Mês</button>
+        <div
+          class="flex-row"
+          style="margin-bottom: 0.75rem; gap: 0.6rem; flex-wrap: wrap"
+        >
+          <button id="btn-gerar-fechamento">Gerar Fechamento do Mês</button>
+          <button id="btn-exportar-fechamento" type="button">
+            Exportar CSV
+          </button>
+        </div>
         <h3>Relatório Consolidado</h3>
-        <table>
+        <table id="tabela-fechamento">
           <thead>
             <tr>
               <th>Tipo de Material</th>
@@ -212,32 +236,10 @@
               <th>Estoque Final (R$)</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Chapa 26</td>
-              <td>0.00</td>
-              <td>R$ 0,00</td>
-              <td>10000.00</td>
-              <td>R$ 25.000,00</td>
-              <td>0.00</td>
-              <td>R$ 0,00</td>
-              <td>10000.00</td>
-              <td>R$ 25.000,00</td>
-            </tr>
-            <tr>
-              <td>Chapa 24</td>
-              <td>0.00</td>
-              <td>R$ 0,00</td>
-              <td>0.00</td>
-              <td>R$ 0,00</td>
-              <td>0.00</td>
-              <td>R$ 0,00</td>
-              <td>0.00</td>
-              <td>R$ 0,00</td>
-            </tr>
-          </tbody>
+          <tbody id="fechamento-tbody"></tbody>
         </table>
       </section>
     </main>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>
